@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-bgContrast: #f9f9f9;
+}
+
+@layer theme {
+  .dark {
+    --color-bgContrast: #8be9d8;
+  }
+}
+@keyframes scroll {
+    0% {
+      transform: translateX(0);
+  }
+  100% {
+      transform: translateX(-100%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 40s linear infinite;
+  display: flex;
+  width: max-content;
+  overflow-x: hidden;
+  white-space: nowrap;
+}
+
+.hover\:pause-animation:hover {
+  animation-play-state: paused;
+}
+
+
+@media (hover: none) {
+  .hover\:pause-animation:active {
+      animation-play-state: paused;
+  }
+}
