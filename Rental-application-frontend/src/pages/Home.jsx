@@ -1,7 +1,9 @@
 import { Appbar } from "../components/Appbar";
 import FAQSection from "../components/FaqSection";
 import { Footer } from "../components/Footer";
-import { FaSearch, FaCalendarCheck, FaFileSignature } from "react-icons/fa";
+import { FaSearch, FaCalendarCheck, FaFileSignature, FaStar, FaStarHalf } from "react-icons/fa";
+import { PropertyCard } from "../components/PropertyCard";
+import { Link } from "react-router-dom";
 
 const Home = () => {
     return (
@@ -9,22 +11,27 @@ const Home = () => {
             <Appbar />
 
             <main className="flex-grow">
-                {/* Hero Section */}
-                <section
-                    className="bg-cover bg-center h-96 flex items-center justify-center relative"
-                    style={{ backgroundImage: "url('https://via.placeholder.com/1500x500')" }}
-                >
-                    <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-                    <div className="text-center z-10 text-white px-4">
-                        <h2 className="text-4xl md:text-5xl font-bold mb-4">Find Your Dream Rental Property</h2>
-                        <p className="text-lg md:text-xl mb-6">
-                            Secure & transparent transactions powered by blockchain technology.
-                        </p>
-                        <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg">
-                            Get Started
-                        </button>
-                    </div>
-                </section>
+            <div className="bg-white py-16">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="text-center">
+                    <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                    Rental Properties Application
+                    </h2>
+                    <p className="mt-3 max-w-2xl mx-auto text-xl text-gray-500 sm:mt-4">
+                    Discover properties with complete transparency and verified history
+                    </p>
+          </div>
+
+
+          <div className="mt-8 text-center">
+            <Link to="/properties">
+              <a className="inline-flex items-center justify-center bg-black  px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary hover:bg-gray-700">
+                View All Properties
+              </a>
+            </Link>
+          </div>
+        </div>
+      </div>
 
                 {/* Featured Properties */}
                 <section className="py-16 px-4">
@@ -32,21 +39,21 @@ const Home = () => {
                         <h3 className="text-3xl font-bold text-center mb-8">Featured Properties</h3>
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                             {properties.map((property, index) => (
-                                <div key={index} className="bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105">
-                                    <img className="w-full h-48 object-cover" src={property.image} alt={property.title} />
-                                    <div className="p-4">
-                                        <h4 className="text-xl font-semibold mb-2">{property.title}</h4>
-                                        <p className="text-gray-600 dark:text-gray-300 mb-2">{property.details}</p>
-                                        <p className="text-blue-600 font-bold">{property.price}</p>
-                                    </div>
-                                </div>
+                                <PropertyCard key={index} property={property} />
                             ))}
+                        </div>
+                        <div className="mt-8 text-center">
+                            <Link to="/properties">
+                            <a className="inline-flex items-center bg-orange-500 justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary hover:bg-orange-700">
+                                View All Properties
+                            </a>
+                            </Link>
                         </div>
                     </div>
                 </section>
 
                 {/* How It Works - Blockchain Enhanced */}
-                <section className="py-16 px-4 bg-gray-200 dark:bg-gray-900">
+                <section className="py-16 px-4">
                     <div className="max-w-7xl mx-auto">
                         <h3 className="text-3xl font-bold text-center mb-8">How It Works</h3>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -77,39 +84,75 @@ const Home = () => {
                 </section>
 
                 {/* Testimonials */}
-                <section className="py-16 px-4">
-                    <div className="max-w-7xl mx-auto">
-                        <h3 className="text-3xl font-bold text-center mb-8">What Our Clients Say</h3>
-                        <div className="overflow-hidden relative">
-                            <div className="flex animate-scroll hover:pause-animation">
-                                {testimonials.map((testimonial, index) => (
-                                    <div
-                                        key={index}
-                                        className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow min-w-[300px] mx-4 flex-shrink-0"
-                                    >
-                                        <p className="text-gray-600 dark:text-gray-300 mb-4">
-                                            "{testimonial.quote}"
-                                        </p>
-                                        <h4 className="font-bold text-xl">{testimonial.name}</h4>
-                                        <p className="text-gray-500">{testimonial.title}</p>
-                                    </div>
-                                ))}
-                                {testimonials.map((testimonial, index) => (
-                                    <div
-                                        key={index}
-                                        className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow min-w-[300px] mx-4 flex-shrink-0"
-                                    >
-                                        <p className="text-gray-600 dark:text-gray-300 mb-4">
-                                            "{testimonial.quote}"
-                                        </p>
-                                        <h4 className="font-bold text-xl">{testimonial.name}</h4>
-                                        <p className="text-gray-500">{testimonial.title}</p>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                <div className=" py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+              What Our Users Say
+            </h2>
+          </div>
+          <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <div className="bg-gray-50 rounded-lg p-6 shadow-sm">
+              <div className="flex items-center mb-4">
+                <div className="text-amber-500 flex">
+                    <FaStar className="text-amber-300 mr-1" />
+                    <FaStar className="text-amber-300 mr-1" />
+                    <FaStar className="text-amber-300 mr-1" />
+                    <FaStar className="text-amber-300 mr-1" />
+                    <FaStar className="text-amber-300 mr-1" />
+                  <i className="fas fa-star"></i>
+                </div>
+              </div>
+              <blockquote className="text-gray-700 mb-4">
+                "As a landlord, RentGuard has eliminated disputes over maintenance. Tenants can see the complete history, and I can document all improvements."
+              </blockquote>
+              <div className="flex items-center">
+                <div className="font-medium text-gray-900">Michael Richardson</div>
+                <div className="text-gray-500 ml-2 text-sm">Property Owner</div>
+              </div>
+            </div>
+
+            <div className="bg-gray-50 rounded-lg p-6 shadow-sm">
+              <div className="flex items-center mb-4">
+                <div className="text-amber-500 flex">
+                    <FaStar className="text-amber-300 mr-1" />
+                    <FaStar className="text-amber-300 mr-1" />
+                    <FaStar className="text-amber-300 mr-1" />
+                    <FaStar className="text-amber-300 mr-1" />
+                    <FaStarHalf className="text-amber-300 mr-1" />
+                </div>
+              </div>
+              <blockquote className="text-gray-700 mb-4">
+                "I love being able to see real reviews from previous tenants and the complete maintenance history before signing a lease. No more surprises!"
+              </blockquote>
+              <div className="flex items-center">
+                <div className="font-medium text-gray-900">Sarah Johnson</div>
+                <div className="text-gray-500 ml-2 text-sm">Tenant</div>
+              </div>
+            </div>
+
+            <div className="bg-gray-50 rounded-lg p-6 shadow-sm">
+              <div className="flex items-center mb-4">
+                <div className="text-amber-500 flex">
+                    <FaStar className="text-amber-300 mr-1" />
+                    <FaStar className="text-amber-300 mr-1" />
+                    <FaStar className="text-amber-300 mr-1" />
+                    <FaStar className="text-amber-300 mr-1" />
+                    <FaStar className="text-amber-300 mr-1" />
+                  <i className="fas fa-star"></i>
+                </div>
+              </div>
+              <blockquote className="text-gray-700 mb-4">
+                "Our property management company uses RentGuard for all our listings. It's reduced complaints and disputes by over 70% in the first year."
+              </blockquote>
+              <div className="flex items-center">
+                <div className="font-medium text-gray-900">David Thompson</div>
+                <div className="text-gray-500 ml-2 text-sm">Property Manager</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
                 <FAQSection />
             </main>
@@ -121,28 +164,93 @@ const Home = () => {
 
 export default Home;
 
-// Properties Data
 const properties = [
     {
-        title: "Modern Apartment",
-        details: "2 beds • 2 baths • 1200 sqft",
-        price: "$1,200 / month",
-        image: "https://via.placeholder.com/400x300",
+      title: "Coastal Retreat",
+      address: "123 Ocean Drive, Miami, FL",
+      price: 2400,
+      imageUrl: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80",
+      beds: 3,
+      baths: 2,
+      sqft: 1500,
+      propertyType: "house",
+      maintenanceYears: 5,
+      rating: 4.8,
+      verified: true,
+      petFriendly: true
     },
     {
-        title: "Cozy House",
-        details: "3 beds • 2 baths • 1500 sqft",
-        price: "$1,500 / month",
-        image: "https://via.placeholder.com/400x300",
+      title: "Downtown Loft",
+      address: "456 Urban St, Chicago, IL",
+      price: 1850,
+      imageUrl: "https://images.unsplash.com/photo-1584738766473-61c083514bf4?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80",
+      beds: 2,
+      baths: 2,
+      sqft: 1200,
+      propertyType: "apartment",
+      maintenanceYears: 3,
+      rating: 4.5,
+      verified: true,
+      petFriendly: false
     },
     {
-        title: "Luxury Condo",
-        details: "1 bed • 1 bath • 900 sqft",
-        price: "$1,000 / month",
-        image: "https://via.placeholder.com/400x300",
+      title: "Suburban Charm",
+      address: "789 Maple Ave, Austin, TX",
+      price: 2100,
+      imageUrl: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80",
+      beds: 4,
+      baths: 2.5,
+      sqft: 2000,
+      propertyType: "house",
+      maintenanceYears: 7,
+      rating: 4.9,
+      verified: true,
+      petFriendly: true
     },
-];
-
+    {
+      title: "Urban Oasis",
+      address: "123 Main St, San Francisco, CA",
+      price: 1750,
+      imageUrl: "https://images.unsplash.com/photo-1554995207-c18c203602cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80",
+      beds: 2,
+      baths: 2,
+      sqft: 1100,
+      propertyType: "apartment",
+      maintenanceYears: 4,
+      rating: 4.7,
+      verified: true,
+      petFriendly: false
+    },
+    {
+      title: "Riverside Townhouse",
+      address: "456 River Rd, Portland, OR",
+      price: 2200,
+      imageUrl: "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80",
+      beds: 3,
+      baths: 2.5,
+      sqft: 1800,
+      propertyType: "townhouse",
+      maintenanceYears: 6,
+      rating: 4.8,
+      verified: true,
+      petFriendly: true
+    },
+    {
+      title: "Contemporary Villa",
+      address: "789 Hillside Dr, Los Angeles, CA",
+      price: 3500,
+      imageUrl: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&auto=format&fit=crop&w=774&q=80",
+      beds: 4,
+      baths: 3,
+      sqft: 2400,
+      propertyType: "house",
+      maintenanceYears: 8,
+      rating: 4.9,
+      verified: true,
+      petFriendly: true
+    }
+  ];
+  
 // How It Works Data
 const steps = [
     {
@@ -159,33 +267,6 @@ const steps = [
         title: "Sign & Move In",
         description: "Digitally sign your lease and move in hassle-free.",
         icon: <FaFileSignature size={24} />,
-    },
-];
-
-// Testimonials Data
-const testimonials = [
-    { quote: "Finding our new home was a breeze thanks to blockchain security!", name: "Arthur Morgon", title: "Verified Tenant" },
-    { quote: "The process was smooth, and I loved the transparency!", name: "John Smith", title: "Happy Renter" },
-    { quote: "No hidden fees or scams. Just a seamless rental experience.", name: "Sarah Johnson", title: "Satisfied User" },
-    {
-        quote: "I was able to find the perfect apartment in no time. The website is user-friendly and the customer service is top-notch.",
-        name: "David Lee",
-        title: "New Tenant",
-    },
-    {
-        quote: "This site saved me so much time! The listings were clear, and I got the support I needed when I had questions.",
-        name: "Emily White",
-        title: "Happy Customer",
-    },
-    {
-        quote: "I had been searching for weeks before I found this platform. It made finding the right rental property incredibly easy.",
-        name: "Michael Brown",
-        title: "Relieved Renter",
-    },
-    {
-        quote: "I love how straightforward the process was. I found a place I adore, and the platform made it all so easy!",
-        name: "Olivia Taylor",
-        title: "Thrilled Tenant",
     },
 ];
 

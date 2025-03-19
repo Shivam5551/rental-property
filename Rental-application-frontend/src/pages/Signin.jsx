@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ShowPasswordButton } from "../components/ShowPasswordButton";
@@ -9,6 +9,7 @@ import { GoogleButton } from "../components/GoogleButton";
 import { useNavigate } from "react-router-dom";
 import FrontImage from "../assets/homepage.jpg";
 import { DarkModeToggle } from "../components/DarkModeToggle";
+import axios from "axios"
 
 const Signin = () => {
     const [formData, setFormData] = useState({
@@ -16,9 +17,40 @@ const Signin = () => {
         password: "",
     });
     const [showPassword, setShowPassword] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const navigate = useNavigate();
 
     const togglePasswordVisibility = () => setShowPassword(!showPassword);
+
+
+        useEffect(()=> {
+            const sendRequest = async ()=> {
+                try {  
+                    const res = await axios.post(`http://localhost:5000/api/v1/user/signin`, {
+                        email: formData.email,
+                        password: formData.password
+                    });
+                    if(res.data.success) {
+                        toast.success("Signin successful!");
+                        localStorage.setItem('token', `${res.data.token}`);
+                        navigate('/')
+                    }
+                    } catch (e) {
+                        console.log(e);
+                        setIsSubmitting(false); 
+                        if(axios.isAxiosError(e)){
+                            toast.error(e.response.data.message);
+                            return;
+                        }
+                        toast.error("An error occurred while signing in");
+                }
+    
+            }
+    
+            if(isSubmitting) {
+                sendRequest();
+            }
+        }, [isSubmitting,navigate, formData])
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -33,10 +65,7 @@ const Signin = () => {
             toast.error("All fields are required!");
             return;
         }
-
-        toast.success("Signin successful!");
-        await new Promise((resolve) => setTimeout(resolve, 1000)); 
-        navigate('/')
+        setIsSubmitting(true);
     };
 
     return (

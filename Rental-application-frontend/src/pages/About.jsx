@@ -8,7 +8,7 @@ export const About = () => {
             <Appbar />
             <main className="flex-grow">
                 {/* Hero Section */}
-                <section className="bg-cover bg-center h-72 flex items-center justify-center text-white" style={{ backgroundImage: "url('https://via.placeholder.com/1500x500')" }}>
+                <section className="bg-cover bg-center h-72 flex items-center justify-center text-black dark:text-white" style={{ backgroundImage: "url('https://via.placeholder.com/1500x500')" }}>
                     <div className="text-center">
                         <h2 className="text-4xl font-bold mb-4">About Us</h2>
                         <p className="text-lg">Discover the best rental properties with trust and convenience.</p>

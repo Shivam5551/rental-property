@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ShowPasswordButton } from "../components/ShowPasswordButton";
@@ -7,22 +7,52 @@ import { WarnHeadingComponent } from "../components/WarnHeadingComponent";
 import { SubmitButton } from "../components/SubmitButton";
 import { GoogleButton } from "../components/GoogleButton";
 import { useNavigate } from "react-router-dom";
-import FrontImage from "../assets/homepage.jpg";
+import axios from 'axios';
 import { DarkModeToggle } from "../components/DarkModeToggle";
 
 const Signup = () => {
     const [formData, setFormData] = useState({
         email: "",
         fullname: "",
+        phoneno: "",
         password: "",
         confirmPassword: "",
     });
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const [isBackendCall , setIsBackendCall] = useState(false);
+
     const navigate = useNavigate();
 
     const togglePasswordVisibility = () => setShowPassword(!showPassword);
     const toggleConfirmPasswordVisibility = () => setShowConfirmPassword(!showConfirmPassword);
+
+    useEffect(()=> {
+        const backendCall = async () => {
+            try {
+                const response = await axios.post('http://localhost:5000/api/v1/user/signup', 
+                    formData
+                )
+                const token = response.data.token;
+                if(token) {
+                    toast.success("Signup successful!");
+                    localStorage.setItem('token', token);
+                    navigate('/');
+                }
+            } catch (error) {
+                if(axios.isAxiosError(error)) {
+                    toast.error(error.response.data.message);
+                }
+                else {
+                    toast.error("An error occurred while signing up");
+                }
+            }
+        }
+        if(isBackendCall) {
+            setIsBackendCall(false);
+            backendCall();
+        }
+    }, [isBackendCall, formData, navigate]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -35,9 +65,9 @@ const Signup = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const { email, fullname, password, confirmPassword } = formData;
+        const { email, fullname, password, confirmPassword, phoneno } = formData;
 
-        if (!email || !fullname || !password || !confirmPassword) {
+        if (!email || !fullname || !password || !confirmPassword || !phoneno) {
             toast.error("All fields are required!");
             return;
         }
@@ -52,8 +82,9 @@ const Signup = () => {
             return;
         }
 
-        toast.success("Signup successful!");
-        navigate('/')
+        setIsBackendCall(true);
+        
+        
     };
 
     return (
@@ -74,6 +105,8 @@ const Signup = () => {
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <FormLabel htmlFor="email" type="email" label="Email" name="email" value={formData.email} onChange={handleChange} required />
                         <FormLabel htmlFor="fullname" type="text" label="Full Name" name="fullname" value={formData.fullname} onChange={handleChange} required />
+                        <FormLabel htmlFor="phoneno" type="text" label="Phone Number" name="phoneno" value={formData.phoneno} onChange={handleChange} required />
+                        
                         <div className="relative">
                             <FormLabel htmlFor="password" label="Password" type={showPassword ? "text" : "password"} name="password" value={formData.password} onChange={handleChange} required />
                             <ShowPasswordButton password={showPassword} toggleVisibility={togglePasswordVisibility} />
