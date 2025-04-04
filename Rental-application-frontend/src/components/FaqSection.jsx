@@ -48,7 +48,7 @@ export default function FAQSection() {
     };
 
     return (
-        <section className="py-16 px-4 bg-gray-100 dark:bg-gray-900">
+        <section className="py-16 px-4 bg-gray-100 dark:bg-black">
             <div className="max-w-5xl mx-auto">
                 <h3 className="text-3xl font-bold text-center mb-10 text-gray-900 dark:text-white">Frequently Asked Questions</h3>
                 <div className="space-y-4">

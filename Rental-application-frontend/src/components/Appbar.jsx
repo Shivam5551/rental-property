@@ -6,9 +6,9 @@ export const Appbar = () => {
     
 
     return (
-        <nav className="bg-white dark:bg-black p-3 border-b-2 border-blue-300 shadow-md ">
-            <div className=" flex justify-between items-center">
-                <div className="text-black dark:text-white text-lg font-bold">
+        <nav className="fixed fixed top-0 w-full bg-white/80 backdrop-blur-sm z-50 border-b  dark:bg-black/80 p-3 shadow-md ">
+            <div className=" flex px-2 justify-between items-center">
+                <div className="text-black dark:text-white text-xl font-bold">
                     Rental Application
                 </div>
                 <Searchbar />
@@ -50,7 +50,7 @@ const NavLink = ({ href, title, symbol }) => {
         <a href={href} className="text-black pt-2 md:pt-0 w-full hover:cursor-pointer dark:text-white hover:text-gray-700 dark:hover:text-gray-300">
             <span className="flex items-center md:justify-center">
                 {symbol}
-                <span className="text-base pt-1 pl-1 ">{title}</span>
+                <span className="text-base pl-1 ">{title}</span>
             </span>
         </a>
     );

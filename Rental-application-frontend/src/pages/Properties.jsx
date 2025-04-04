@@ -175,7 +175,7 @@ export const Properties = () => {
               <div className="w-full md:w-auto md:flex-none md:self-end">
                 <button 
                   type="button" 
-                  className="w-full mt-6 px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-blue-700 focus:outline focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:bg-blue-600 dark:hover:bg-blue-800"
+                  className="w-full mt-6 px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary bg-indigo-500 hover:bg-blue-700 focus:outline focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:bg-blue-600 dark:hover:bg-blue-800"
                   onClick={handleSearch}
                 >
                   Search
