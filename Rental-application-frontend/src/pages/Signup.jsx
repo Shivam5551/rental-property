@@ -88,17 +88,8 @@ const Signup = () => {
     };
 
     return (
-        <div className="min-h-screen grid-cols-1 md:grid-cols-2 grid bg-gray-100 dark:bg-gray-900">
-            <div className="bg-gray-300 flex-col dark:bg-gray-700 hidden md:flex items-center justify-center">
-                <img src="https://images.unsplash.com/photo-1729838809728-48566c1ef0e9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="App" className="object-cover rounded-full h-[50%] w-[50%]" />
-                <h1 className="dark:text-white px-10 py-2 text-4xl font-bold">
-                    Begin Your Journey with Us!
-                </h1>
-            </div>
-            <div className="absolute top-4 right-4">
-                <DarkModeToggle />
-            </div>
-
+        <div className="min-h-screen grid-cols-1 grid bg-gray-100 dark:bg-gray-900">
+            <div className="absolute top-5 right-10"><DarkModeToggle/></div>
             <div className="flex items-center justify-center bg-gray-100 dark:bg-gray-900 p-8">
                 <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-8 w-full max-w-md">
                     <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6 text-center">Create an Account</h2>

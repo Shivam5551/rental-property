@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { PropertyCard } from "../components/PropertyCard";
 import { Appbar } from "../components/Appbar";
 import { Footer } from "../components/Footer";
+import { FaMinusCircle, FaPlusCircle, FaSearch } from "react-icons/fa";
 export const Properties = () => {
     const [location, setLocation] = useState("");
     const [activeFilters, setActiveFilters] = useState([]);
@@ -35,29 +36,29 @@ export const Properties = () => {
         }
     };
     return (
-        <div>
-            <Appbar />
+      <div>
+      <Appbar />
       {/* Property Search */}
-      <div className="bg-white">
+      <div className="bg-white dark:bg-black mt-18">
         <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-extrabold text-gray-900">Browse Properties</h1>
-          <p className="mt-2 text-gray-600">Find your next home with complete transparency on maintenance and rental history</p>
+          <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white">Browse Properties</h1>
+          <p className="mt-2 text-gray-600 dark:text-gray-300">Find your next home with complete transparency on maintenance and rental history</p>
           
           {/* Search and Filters */}
-          <div className="mt-6 bg-gray-50 p-6 rounded-lg shadow-sm">
+          <div className="mt-6 bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-sm dark:shadow-gray-700">
             <div className="flex flex-wrap gap-4">
               <div className="w-full md:w-auto flex-grow">
-                <label htmlFor="search" className="block text-sm font-medium text-gray-700">Search Location</label>
+                <label htmlFor="search" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Search Location</label>
                 <div className="mt-1 relative rounded-md shadow-sm">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <i className="fas fa-search text-gray-400"></i>
+                    <FaSearch />
                   </div>
                   <input 
                     type="text" 
                     name="search" 
                     id="search" 
-                    className="focus:ring-primary focus:border-primary block w-full pl-10 pr-12 py-2 sm:text-sm border-gray-300 rounded-md" 
-                    placeholder="City, neighborhood, or ZIP"
+                    className="focus:ring-primary focus:border-primary block w-full pl-10 pr-12 py-2 sm:text-sm border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white" 
+                    pSorlaceholder="City, neighborhood, or ZIP"
                     value={location}
                     onChange={(e) => setLocation(e.target.value)}
                   />
@@ -65,11 +66,11 @@ export const Properties = () => {
               </div>
               
               <div className="w-full md:w-auto md:flex-1">
-                <label htmlFor="price" className="block text-sm font-medium text-gray-700">Price Range</label>
+                <label htmlFor="price" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Price Range</label>
                 <select 
                   id="price" 
                   name="price" 
-                  className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md"
+                  className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline focus:ring-primary focus:border-primary sm:text-sm rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                   onChange={(e) => {
                     const value = e.target.value;
                     if (value === "") {
@@ -93,11 +94,11 @@ export const Properties = () => {
               </div>
               
               <div className="w-full md:w-auto md:flex-1">
-                <label htmlFor="beds" className="block text-sm font-medium text-gray-700">Bedrooms</label>
+                <label htmlFor="beds" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Bedrooms</label>
                 <select 
                   id="beds" 
                   name="beds" 
-                  className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md"
+                  className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline focus:ring-primary focus:border-primary sm:text-sm rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                   onChange={(e) => handleFilterChange("beds", e.target.value ? parseInt(e.target.value) : undefined)}
                 >
                   <option value="">Any</option>
@@ -109,11 +110,11 @@ export const Properties = () => {
               </div>
               
               <div className="w-full md:w-auto md:flex-1">
-                <label htmlFor="baths" className="block text-sm font-medium text-gray-700">Bathrooms</label>
+                <label htmlFor="baths" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Bathrooms</label>
                 <select 
                   id="baths" 
                   name="baths" 
-                  className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md"
+                  className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline focus:ring-primary focus:border-primary sm:text-sm rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                   onChange={(e) => handleFilterChange("baths", e.target.value ? parseFloat(e.target.value) : undefined)}
                 >
                   <option value="">Any</option>
@@ -126,11 +127,11 @@ export const Properties = () => {
             
             <div className="mt-4 flex flex-wrap gap-4">
               <div className="w-full md:w-auto flex-1">
-                <label htmlFor="property-type" className="block text-sm font-medium text-gray-700">Property Type</label>
+                <label htmlFor="property-type" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Property Type</label>
                 <select 
                   id="property-type" 
                   name="property-type" 
-                  className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md"
+                  className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline focus:ring-primary focus:border-primary sm:text-sm rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                   onChange={(e) => handleFilterChange("propertyType", e.target.value || undefined)}
                 >
                   <option value="">Any Type</option>
@@ -142,11 +143,11 @@ export const Properties = () => {
               </div>
               
               <div className="w-full md:w-auto flex-1">
-                <label htmlFor="maintenance" className="block text-sm font-medium text-gray-700">Maintenance History</label>
+                <label htmlFor="maintenance" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Maintenance History</label>
                 <select 
                   id="maintenance" 
                   name="maintenance" 
-                  className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md"
+                  className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline focus:ring-primary focus:border-primary sm:text-sm rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                   onChange={(e) => handleFilterChange("maintenanceYears", e.target.value ? parseInt(e.target.value) : undefined)}
                 >
                   <option value="">Any</option>
@@ -157,11 +158,11 @@ export const Properties = () => {
               </div>
               
               <div className="w-full md:w-auto flex-1">
-                <label htmlFor="rating" className="block text-sm font-medium text-gray-700">Tenant Rating</label>
+                <label htmlFor="rating" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Tenant Rating</label>
                 <select 
                   id="rating" 
                   name="rating" 
-                  className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md"
+                  className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline focus:ring-primary focus:border-primary sm:text-sm rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                   onChange={(e) => handleFilterChange("rating", e.target.value ? parseFloat(e.target.value) : undefined)}
                 >
                   <option value="">Any Rating</option>
@@ -174,7 +175,7 @@ export const Properties = () => {
               <div className="w-full md:w-auto md:flex-none md:self-end">
                 <button 
                   type="button" 
-                  className="w-full mt-6 px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+                  className="w-full mt-6 px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-blue-700 focus:outline focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:bg-blue-600 dark:hover:bg-blue-800"
                   onClick={handleSearch}
                 >
                   Search
@@ -184,13 +185,13 @@ export const Properties = () => {
             
             <div className="mt-4 flex flex-wrap gap-2">
               {activeFilters.map(filter => (
-                <span key={filter} className="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
+                <span key={filter} className="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
                   <button 
                     type="button" 
-                    className="flex-shrink-0 ml-1 h-4 w-4 rounded-full inline-flex items-center justify-center text-blue-600 hover:bg-blue-200 focus:outline-none"
+                    className="flex-shrink-0 h-5 w-full rounded-full inline-flex items-center justify-center text-blue-600 focus:outline dark:text-blue-300 "
                     onClick={() => removeFilter(filter)}
                   >
-                    {filter} <i className="fas fa-times-circle ml-1"></i>
+                   <FaMinusCircle className="mr-2"/> {filter} 
                   </button>
                 </span>
               ))}
@@ -198,22 +199,22 @@ export const Properties = () => {
               {!activeFilters.includes("Pet Friendly") && (
                 <button 
                   onClick={togglePetFriendly}
-                  className="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-gray-100 text-gray-800 hover:bg-gray-200"
+                  className="inline-flex items-center px-3 py-0.5 rounded-lg text-sm font-medium bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
                 >
-                  + Pet Friendly
+                  <FaPlusCircle className="mr-2"/> Pet Friendly
                 </button>
               )}
             </div>
           </div>
         </div>
       </div>
-
+    
       {/* Property Results */}
-      <div className="bg-gray-50 py-12">
+      <div className="bg-gray-50 dark:bg-black py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-6 flex justify-between items-center">
             <div>
-              <h2 className="text-lg font-medium text-gray-900">
+              <h2 className="text-lg font-medium text-gray-900 dark:text-white">
                 {isLoading 
                   ? "Loading properties..." 
                   : error 
@@ -222,8 +223,8 @@ export const Properties = () => {
               </h2>
             </div>
             <div className="flex items-center">
-              <span className="mr-2 text-sm text-gray-700">Sort by:</span>
-              <select className="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md">
+              <span className=" w-full text-lg mr-2 text-gray-700 dark:text-gray-300">Sort by:</span>
+              <select className="block w-fit pr-10 pl-2 py-2 text-base border-gray-300 focus:outline focus:ring-primary focus:border-primary sm:text-sm rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                 <option>Newest</option>
                 <option>Price: Low to High</option>
                 <option>Price: High to Low</option>
@@ -232,19 +233,18 @@ export const Properties = () => {
               </select>
             </div>
           </div>
-
+    
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {properties && properties.length > 0 ? (
               properties.map(property => (
                 <PropertyCard key={property.id} property={property} />
               ))
             ) : (
-              <div className="col-span-3 text-center text-gray-500">
+              <div className="col-span-3 text-center text-gray-500 dark:text-gray-400">
                 No properties found matching your criteria.
               </div>
             )}
           </div>
-
         </div>
       </div>
       <Footer />
