@@ -21,7 +21,7 @@ export const Searchbar = () => {
                 type="text"
                 value={searchQuery}
                 id="search"
-                placeholder="Search for products"
+                placeholder="Search for properties"
             />
         </div>
     )
